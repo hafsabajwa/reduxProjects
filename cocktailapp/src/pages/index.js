@@ -1,10 +1,11 @@
 import React from 'react'
+import { SearchInput } from '../components/SearchInput'
 
 const Home = () => {
   return (
     <div>
         <h2>Home</h2>
-        {/* Search input */}
+        <SearchInput/>
         {/* Cocktail list */}
     </div>
   )
