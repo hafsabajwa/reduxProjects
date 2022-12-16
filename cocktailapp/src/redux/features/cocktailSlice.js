@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 
 export const fetchCocktails = createAsyncThunk("cocktails/fetchCocktails", async () => {
-    return fetch("https://www.thecocktaildb.com/api/json/v1/1/dearch.php?s=").then((res) => res.json());
+    return fetch("https://www.thecocktaildb.com/api/json/v1/1/search.php?s=").then((res) => res.json());
 });
 
 const cocktailSlice = createSlice ({
@@ -14,7 +14,7 @@ const cocktailSlice = createSlice ({
     },
     extraReducers: {
         [fetchCocktails.pending] : (state, action) => {
-            state.loading=true
+            state.loading=true;
         },
         [fetchCocktails.fulfilled] : (state, action) => {
             state.loading = false;

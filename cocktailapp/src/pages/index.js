@@ -5,7 +5,6 @@ import { CocktailList } from '../components/CocktailList'
 const Home = () => {
   return (
     <div>
-        <h2>Home</h2>
         <SearchInput/>
         <CocktailList/>
     </div>

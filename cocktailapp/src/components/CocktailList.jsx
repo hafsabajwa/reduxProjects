@@ -9,10 +9,13 @@ export const CocktailList = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(fetchCocktails());
+  }, []);
+
+  useEffect(() => {
     if (cocktails) {
       const newCocktails = cocktails.map((item) => {
-        const { idDrink, strDrink, strDrinkThumb, strAlcoholic, strGlass } =
-          item;
+        const { idDrink, strDrink, strDrinkThumb, strAlcoholic, strGlass } = item;
         return {
           id: idDrink,
           name: strDrink,
@@ -39,15 +42,17 @@ export const CocktailList = () => {
         {modifiedCocktail.map((item) => {
           const { id, name, image, glass, info } = item;
           return (
-            <div className="card h-2">
-              <img src={image} alt={name} className="card-img-top" />
-              <div className="card-body">
-                <h5 className="card-title">{name}</h5>
-                <h4 className="card-title">{glass}</h4>
-                <p className="card-text">{info}</p>
-                <Link to={"/cocktail/${id}"}>
-                  <button className="btn btn-info">Details</button>
-                </Link>
+            <div className="col" key={id}>
+              <div className="card h-2">
+                <img src={image} alt={name} className="card-img-top" />
+                <div className="card-body">
+                  <h5 className="card-title">{name}</h5>
+                  <h4 className="card-title">{glass}</h4>
+                  <p className="card-text">{info}</p>
+                  <Link to={"/cocktail/${id}"}>
+                    <button className="btn btn-info">Details</button>
+                  </Link>
+                </div>
               </div>
             </div>
           );
