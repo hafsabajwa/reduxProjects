@@ -45,11 +45,11 @@ export const CocktailList = () => {
             <div className="col" key={id}>
               <div className="card h-2">
                 <img src={image} alt={name} className="card-img-top" />
-                <div className="card-body">
+                <div className="card-body" style={{textAlign:'left'}}>
                   <h5 className="card-title">{name}</h5>
                   <h4 className="card-title">{glass}</h4>
                   <p className="card-text">{info}</p>
-                  <Link to={"/cocktail/${id}"}>
+                  <Link to={"/cocktail/" + id}>
                     <button className="btn btn-info">Details</button>
                   </Link>
                 </div>
