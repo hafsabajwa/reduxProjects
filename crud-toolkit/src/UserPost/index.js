@@ -2,8 +2,8 @@ import React from 'react'
 
 const Home = () => {
   return (
-    <div>Post</div>
+    <h1>Post</h1>
   )
 }
 
-export default index
+export default Home

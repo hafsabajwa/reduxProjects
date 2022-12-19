@@ -1,7 +1,7 @@
-import './App.css';
-import {Route, Routes, BrowserRouter} from "react-router-dom"
-import Home from './UserPost'
-import CreatePost from './UserPost/CreatePost';
+import "./App.css";
+import {Route, Routes, BrowserRouter} from "react-router-dom";
+import CreatePost from "./UserPost/CreatePost";
+import Home from "./UserPost"
 
 function App() {
   return (
