@@ -13,7 +13,7 @@ export const fetchSingleCocktail = createAsyncThunk(
   "cocktails/fetchSingleCocktail",
   async ({ id }) => {
     return fetch(
-        'https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}'
+        'https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i='+id
         ).then((res) => res.json());
   }
 );
