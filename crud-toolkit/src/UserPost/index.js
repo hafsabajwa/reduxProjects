@@ -1,11 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { Button, Card, Input, Space } from "antd";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getPost } from "../redux/features/postSlice";
+import LoadingCard from "./LoadingCard";
 
 const Home = () => {
   const [id, setId] = useState();
-
-  const fetchUserPost = () => {};
+  const dispatch = useDispatch();
+  const { loading, post } = useSelector((state) => ({ ...state.app }));
+  console.log("post", post);
+  const fetchUserPost = () => {
+    if (!id) {
+      window.alert("Please provide an Id");
+    } else {
+      dispatch(getPost({ id }));
+      setId("");
+    }
+  };
   const navigate = useNavigate();
 
   return (
@@ -17,7 +29,7 @@ const Home = () => {
         onChange={(e) => setId(e.target.value)}
         value={id}
         style={{ width: "300px" }}
-      />{" "}
+      />
       <br /> <br />
       <Space size="small" style={{ margin: 10 }}>
         <Button type="primary" onClick={fetchUserPost}>
@@ -27,6 +39,16 @@ const Home = () => {
           Create User Post
         </Button>
       </Space>
+      <br /> <br />
+      {loading ? <LoadingCard count={1}/> : (
+        <>
+        <div className="site-card-border-less-wrapper">
+          <Card type="inner" title={post[0].title}>
+            <p>User Id: {post[0].id}</p>
+          </Card>
+        </div>
+        </>
+      )}
     </div>
   );
 };
