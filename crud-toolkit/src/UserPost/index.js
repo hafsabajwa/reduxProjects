@@ -40,13 +40,17 @@ const Home = () => {
         </Button>
       </Space>
       <br /> <br />
-      {loading ? <LoadingCard count={1}/> : (
+      {loading ? (
+        <LoadingCard count={1} />
+      ) : (
         <>
-        <div className="site-card-border-less-wrapper">
-          <Card type="inner" title={post[0].title}>
-            <p>User Id: {post[0].id}</p>
-          </Card>
-        </div>
+          {post.length > 0 && (
+            <div className="site-card-border-less-wrapper">
+              <Card type="inner" title={post[0].title}>
+                <p>User Id: {post[0].id}</p>
+              </Card>
+            </div>
+          )}
         </>
       )}
     </div>
