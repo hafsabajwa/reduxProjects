@@ -2,6 +2,7 @@ import { Button, Input, Space } from "antd";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { createPost } from "../redux/features/postSlice";
 
 const CreatePost = () => {
   const [values, setValues] = useState({ title: "", body: "" });
@@ -10,7 +11,12 @@ const CreatePost = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(createPost({values}));
+    setValues({title:"", body: ""})
+    setShowPost(true);
+  };
   return (
     <div>
       <form onSubmit={handleSubmit}>
