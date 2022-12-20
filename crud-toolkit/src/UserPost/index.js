@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button, Card, Input, Space } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getPost } from "../redux/features/postSlice";
+import { getPost, deletePost } from "../redux/features/postSlice";
 import LoadingCard from "./LoadingCard";
 
 const Home = () => {
@@ -48,7 +48,29 @@ const Home = () => {
             <div className="site-card-border-less-wrapper">
               <Card type="inner" title={post[0].title}>
                 <p>User Id: {post[0].id}</p>
+                <span>{post[0].body}</span>
               </Card>
+              <Space
+                size="middle"
+                style={{
+                  marginTop: 35,
+                  marginLeft: 5,
+                  marginRight: 5,
+                  float: "right",
+                }}
+              >
+                <Button
+                  style={{ cursor: "pointer" }}
+                  type="primary"
+                  danger
+                  onClick={() => dispatch(deletePost({ id: post[0].id }))}
+                >
+                  Delete
+                </Button>
+                <Button style={{ cursor: "pointer" }} type="primary">
+                  Edit
+                </Button>
+              </Space>
             </div>
           )}
         </>
