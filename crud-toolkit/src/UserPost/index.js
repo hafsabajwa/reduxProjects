@@ -20,7 +20,7 @@ const Home = () => {
       /> <br/> <br/>
       <Space size="small" style={{margin: 10}}>
         <Button type='primary' onClick={fetchUserPost}>Fetch User Post</Button>
-        <button type='primary'>Create User Post</button>
+        <button type='primary' onClick={()=> navigate("/createPost")}>Create User Post</button>
       </Space>
     </div>
   );
