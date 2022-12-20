@@ -1,12 +1,15 @@
 import { Button, Input, Space } from "antd";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const CreatePost = () => {
   const [values, setValues] = useState({ title: "", body: "" });
   const [showPost, setShowPost] = useState(false);
   const { title, body } = values;
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {};
   return (
     <div>
@@ -30,7 +33,7 @@ const CreatePost = () => {
         />
         <br /> <br />
         <Space style={{margin:10}}>
-          <Button>Go Back</Button>
+          <Button onClick={() => navigate("/")}>Go Back</Button>
           <Button type="primary" htmlType="submit">Submit</Button>
         </Space>
       </form>
