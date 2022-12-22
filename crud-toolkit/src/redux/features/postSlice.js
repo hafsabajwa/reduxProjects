@@ -32,6 +32,23 @@ export const createPost = createAsyncThunk(
   }
 );
 
+export const updatePost = createAsyncThunk(
+  "post/updatePost",
+  async ({ id, body, title }) => {
+    return fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
+      method: "PUT",
+      headers: {
+        Accept: "application/json",
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        title,
+        body,
+      }),
+    }).then((res) => res.json());
+  }
+);
+
 const postSlice = createSlice({
   name: "post",
   initialState: {
