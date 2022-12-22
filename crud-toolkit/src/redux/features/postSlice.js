@@ -55,6 +55,14 @@ const postSlice = createSlice({
     post: [],
     loading: false,
     error: null,
+    body:"",
+    edit: false
+  },
+  reducers: {
+    setEdit: (state, action) => {
+      state.edit = action.payload.edit;
+      state.body = action.payload.body;
+    }
   },
   extraReducers: {
     [getPost.pending]: (state, action) => {
@@ -90,7 +98,20 @@ const postSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
+    [updatePost.pending]: (state, action) => {
+      state.loading = true;
+    },
+    [updatePost.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.post = [action.payload];
+    },
+    [updatePost.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
   },
 });
+ 
+export const {setEdit} = postSlice.actions;
 
 export default postSlice.reducer;
