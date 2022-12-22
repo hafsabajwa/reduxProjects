@@ -1,11 +1,13 @@
-import { Button, Input, Space } from "antd";
+import { Button, Input, Space, Card } from "antd";
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { createPost } from "../redux/features/postSlice";
+import LoadingCard from "./LoadingCard";
 
 const CreatePost = () => {
   const [values, setValues] = useState({ title: "", body: "" });
+  const { post, loading } = useSelector((state) => ({ ...state.app }));
   const [showPost, setShowPost] = useState(false);
   const { title, body } = values;
   const dispatch = useDispatch();
@@ -13,9 +15,26 @@ const CreatePost = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(createPost({values}));
-    setValues({title:"", body: ""})
+    dispatch(createPost({ values }));
+    setValues({ title: "", body: "" });
     setShowPost(true);
+  };
+
+  const showPostBlog = () => {
+    return (
+      <>
+        {loading ? (
+          <LoadingCard count={1} />
+        ) : (
+          <div className="site-card-border-less-wrapper">
+            <Card type="inner" title={post[0].title}>
+              <p>User Id: {post[0].id}</p>
+              <span>{post[0].body}</span>
+            </Card>
+          </div>
+        )}
+      </>
+    );
   };
   return (
     <div>
@@ -38,11 +57,15 @@ const CreatePost = () => {
           size="large"
         />
         <br /> <br />
-        <Space style={{margin:10}}>
+        <Space style={{ margin: 10 }}>
           <Button onClick={() => navigate("/")}>Go Back</Button>
-          <Button type="primary" htmlType="submit">Submit</Button>
+          <Button type="primary" htmlType="submit">
+            Submit
+          </Button>
         </Space>
       </form>
+      <br /> <br />
+      {showPost && <div>{showPostBlog()}</div>}
     </div>
   );
 };
